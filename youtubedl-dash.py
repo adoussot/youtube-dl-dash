@@ -29,13 +29,13 @@ def gather_title(link):
     # remove the Quotes
     return pretty_print(title[1:-2])
 
-def create_directory(title):
+def create_directory(title, path):
     """
     :param arg1: title of the output folder to create
     :type arg1: string
     """
     # create directory with the previous name
-    path = "/home/mamadouhh/Documents/dev/dash/youtube/test/2/{}".format(title)
+    path = "{path}{title}".format(path=path, title=title)
     mkdir_p(path)
     return path + "/"
 
@@ -101,16 +101,21 @@ def mkdir_p(path):
             if err.errno != 17:
                 raise
 
-def main(link):
+def main(args):
     """
     :param arg1: url of the media to download with youtube-dl
     :type arg1: string
     """
+    path = ""
+    link = args[1]
+    if (len(args) > 2):
+        path = args[2]
+        path = path if (path.endswith("/")) else path + "/"
     # fetch the youtube video's Name
     title = gather_title(link)
     print("title : {}".format(title))
     # create directory 
-    path = create_directory(title)    
+    path = create_directory(title, path)    
     #  list all the available video
     results = list_yt_medias(link)
     print("RESULT: ", results)
@@ -120,5 +125,4 @@ def main(link):
 if __name__ =="__main__":   
     # import pdb; pdb.set_trace()
     print("Download every mp4 files of the youtube link: {}".format(sys.argv[1]))
-    main(sys.argv[1])
-
+    main(sys.argv)
