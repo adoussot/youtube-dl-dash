@@ -60,7 +60,7 @@ def process_file(command):
     :param arg1: command to execute
     :type arg1: string
     """
-    print("start execute command : {}".format(command))
+    print("-> Start execute command : {}".format(command))
     subprocess.check_output(command, shell=True)
 
 def download_qualities(path, results, title, link):
@@ -120,36 +120,5 @@ def main(link):
 if __name__ =="__main__":   
     # import pdb; pdb.set_trace()
     print("Download every mp4 files of the youtube link: {}".format(sys.argv[1]))
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "ho:y", ["help", "output="])
-    except getopt.GetoptError as err:
-        # print help information and exit:
-        print(str(err)) # will print something like "option -a not recognized"
-
     main(sys.argv[1])
 
-
-
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "ho:v", ["help", "output="])
-    except getopt.GetoptError as err:
-        # print help information and exit:
-        print str(err) # will print something like "option -a not recognized"
-        usage()
-        sys.exit(2)
-    output = None
-    verbose = False
-    for o, a in opts:
-        if o == "-v":
-            verbose = True
-        elif o in ("-h", "--help"):
-            usage()
-            sys.exit()
-        elif o in ("-o", "--output"):
-            output = a
-        else:
-            assert False, "unhandled option"
-    # ...
-
-if __name__ == "__main__":
-    main()
