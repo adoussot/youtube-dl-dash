@@ -7,7 +7,7 @@ def help():
     help_message = """ 
 Youtubedl-Dash : A short python script for downloading every mp4 youtube files from a specific link
 
-Usage: python3 youtubedl-dash.py [arguments] 
+Usage: python3 getopts.py [arguments] 
 
 Arguments: 
   -h or --help  : Show help (this message) and exit
