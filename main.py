@@ -3,7 +3,7 @@ import sys
 import os
 import subprocess
 
-def help():
+def launch_help():
     help_message = """ 
 Youtubedl-Dash : A short python script for downloading every mp4 youtube files from a specific link
 
@@ -22,14 +22,14 @@ def main():
         opts, args = getopt.getopt(sys.argv[1:], "hl:v", ["help", "link=", "output_dir="])
     except getopt.GetoptError as err:
         print(err) 
-        help()
+        launch_help()
         sys.exit(2)
 
     output_dir = None
     link = None
     for opt, arg in opts:
         if opt in ("-h", "--help"):
-            help()
+            launch_help()
             sys.exit()
         elif opt in ("-l", "--link"):
             print("linkarg: {}".format(arg))
@@ -45,6 +45,7 @@ def main():
         subprocess.call(["python3", "youtubedl-dash.py", link])
     else:
         print("Error: You must provide at least a valid Url to download files")
+        launch_help()
 
 if __name__ == "__main__":
     main()
