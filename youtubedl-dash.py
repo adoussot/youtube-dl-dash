@@ -79,7 +79,7 @@ def download_qualities(path, results, title, link):
     commands = []
     for result in results:
         commands.append(
-            "youtube-dl -f {result} --output {path}{title}_{result}.'%(ext)s' {link}".format(result=result, path=path, title=title, link=link)
+            "youtube-dl -f {result} --output {path}{title}_'%(format)s.%(ext)s' {link}".format(result=result, path=path, title=title, link=link)
         )
     p = Pool(10)
     p.map(process_file, commands)
