@@ -43,6 +43,8 @@ def main():
     if (link is not None):
         print("link: {}".format(link))
         subprocess.call(["python3", "youtubedl-dash.py", link])
+    else:
+        print("Error: You must provide at least a valid Url to download files")
 
 if __name__ == "__main__":
     main()
