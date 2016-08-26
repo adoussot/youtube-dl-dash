@@ -49,7 +49,7 @@ def list_yt_medias(link):
     output = output.decode("utf-8")
     results = []
     for row in output.split("\n"):
-        wordList = re.sub("[^\w]", " ", row).split()
+        wordList = re.findall("(?=\S*['-]?)([a-zA0-9-Z'-]+)", row)
         for i in range(len(wordList)):
             if (wordList[i] == "mp4"):
                 results.append(wordList[i-1])
